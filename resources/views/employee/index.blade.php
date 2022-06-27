@@ -68,6 +68,10 @@
             </tbody>
         </table>
 
+        <div class="d-flex justify-content-center">
+            {!! $employee->links() !!}
+        </div>
+
     </div>
 </body>
 

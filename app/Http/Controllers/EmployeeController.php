@@ -28,27 +28,13 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-
-        // $companies = Company::all();
-        // $select = [];
         $company = Company::pluck('name', 'id');
-
-        // foreach ($companies as $company) {
-        //     $select[$company->id] = $company->name;
-        // }
 
         return view('employee.create', compact('company'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(EmployeeRequest $request)
     {
-        // return $request;
         $employee = new Employee;
         $employee->first_name = $request->first_name;
         $employee->last_name = $request->last_name;
@@ -61,24 +47,12 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $employee = Employee::findOrFail($id);
         return view('employee.show', ['employee' => $employee]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $employee = Employee::with('company')->find($id);
@@ -87,13 +61,6 @@ class EmployeeController extends Controller
         return view('employee.edit', compact('employee', 'company'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(EmployeeRequest $request, $id)
     {
 
@@ -108,12 +75,6 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
 
